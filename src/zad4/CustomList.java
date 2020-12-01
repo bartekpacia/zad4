@@ -5,7 +5,6 @@ import java.util.Objects;
 public class CustomList {
     private Node root;
     private int size;
-    int accessCounter;
 
     public CustomList() {
         root = null;
@@ -98,15 +97,16 @@ public class CustomList {
         Node result = root;
         while (result != null) {
             if (result.getValue() == value) {
+                result.addAccess();
                 return result;
             }
             result = result.getNext();
         }
-        accessCounter++;
         return null;
     }
 
     public Node getRoot() {
+        root.addAccess();
         return root;
     }
 

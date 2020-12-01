@@ -10,6 +10,11 @@ public class Node {
      */
     private Node next;
 
+    /**
+     * number of times this node was accessed
+     */
+    private int accessCount;
+
     public Node(int value) {
         this.value = value;
         this.next = null;
@@ -29,6 +34,18 @@ public class Node {
 
     public void setNext(Node next) {
         this.next = next;
+    }
+
+    public int getAccessCount() {
+        return accessCount;
+    }
+
+    public void addAccess() {
+        this.accessCount++;
+    }
+
+    public void subtractAccess() {
+        this.accessCount--;
     }
 
     @Override
