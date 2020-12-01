@@ -43,11 +43,7 @@ public class Node {
     public void addAccess() {
         this.accessCount++;
     }
-
-    public void subtractAccess() {
-        this.accessCount--;
-    }
-
+    
     @Override
     public String toString() {
         return String.valueOf(value);

@@ -94,13 +94,23 @@ public class CustomList {
      * @return first node with a given value or null if none is present in the list
      */
     public Node getNode(int value) {
-        Node result = root;
-        while (result != null) {
-            if (result.getValue() == value) {
-                result.addAccess();
-                return result;
+        Node prev = null;
+        Node current = root;
+
+        while (current != null) {
+            if (prev != null && (prev.getAccessCount() < current.getAccessCount())) {
+                int savedPrev = prev.getValue();
+                prev.setValue(current.getValue());
+                current.setValue(savedPrev);
             }
-            result = result.getNext();
+
+            if (current.getValue() == value) {
+                current.addAccess();
+                return current;
+            }
+
+            prev = current;
+            current = current.getNext();
         }
         return null;
     }
@@ -131,12 +141,32 @@ public class CustomList {
         customList.add(1);
         customList.add(3);
         customList.add(9);
+
         System.out.println("List: " + customList);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        customList.getNode(1);
+        System.out.println("List: " + customList);
+
+
+        ////
+
         System.out.println("Size: " + customList.length());
-        Node node = customList.getNode(9);
+        int value = 9;
+        System.out.println("Looking for node with value: " + value);
+        Node node = customList.getNode(value);
         System.out.println("Found node: " + node);
-        node.setValue(56);
-        System.out.println("List after changing value: " + customList);
+        int newValue = 56;
+        System.out.println("List before adding value " + newValue + " : " + customList);
+        node.setValue(newValue);
+        System.out.println("List after adding value " + newValue + " : " + customList);
         // TODO: Write tests in here:
         System.out.println("Number of removed nodes: " + customList.remove(5));//removing multiple elements
         System.out.println("List after removing 5 : " + customList);
