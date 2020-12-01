@@ -100,8 +100,11 @@ public class CustomList {
         while (current != null) {
             if (prev != null && (prev.getAccessCount() < current.getAccessCount())) {
                 int savedPrev = prev.getValue();
+                int savedAccessCount = prev.getAccessCount();
                 prev.setValue(current.getValue());
+                prev.setAccessCount(current.getAccessCount());
                 current.setValue(savedPrev);
+                current.setAccessCount(savedAccessCount);
             }
 
             if (current.getValue() == value) {
@@ -147,12 +150,12 @@ public class CustomList {
         customList.getNode(1);
         customList.getNode(1);
         customList.getNode(1);
-        customList.getNode(1);
-        customList.getNode(1);
-        customList.getNode(1);
-        customList.getNode(1);
-        customList.getNode(1);
-        customList.getNode(1);
+//        customList.getNode(1);
+//        customList.getNode(1);
+//        customList.getNode(1);
+//        customList.getNode(1);
+//        customList.getNode(1);
+//        customList.getNode(1);
         System.out.println("List: " + customList);
 
 

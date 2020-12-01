@@ -40,10 +40,14 @@ public class Node {
         return accessCount;
     }
 
+    public void setAccessCount(int accessCount) {
+        this.accessCount = accessCount;
+    }
+
     public void addAccess() {
         this.accessCount++;
     }
-    
+
     @Override
     public String toString() {
         return String.valueOf(value);
